@@ -7,7 +7,7 @@ function Sidebar() {
   return (
     <div className='sidebar'>
       <div className='sidebar__header'>
-        <Avatar />
+        <Avatar src='https://petapixel.com/assets/uploads/2017/08/IMG_0513.jpg'/>
         <div className='sidebar__headerRight'>
           <IconButton>
             <DonutLarge />
