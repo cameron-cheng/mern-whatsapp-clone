@@ -1,9 +1,9 @@
-//dX7mELN1QsNDu8Zg
-
 //importing
 import express from 'express';
 import mongoose from 'mongoose';
 import Messages from './dbMessages.js';
+import dotenv from 'dotenv'
+ 
 
 //app config
 const app = express();
@@ -13,7 +13,7 @@ const port = process.env.PORT || 9000;
 app.use(express.json());
 
 //DB config
-const connection_url = 'mongodb+srv://admin:dX7mELN1QsNDu8Zg@cluster0.mh813.mongodb.net/whatsappdb?retryWrites=true&w=majority';
+const connection_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mh813.mongodb.net/whatsappdb?retryWrites=true&w=majority`;
 
 mongoose.connect(connection_url, {
   useCreateIndex: true,
