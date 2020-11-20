@@ -1,12 +1,17 @@
-import { Avatar, IconButton } from '@material-ui/core'
-import { AttachFile, InsertEmoticon, MoreVert, SearchOutlined } from '@material-ui/icons'
-import MicIcon from '@material-ui/icons/Mic';
-import React from 'react'
-import './Chat.css'
+import { Avatar, IconButton } from "@material-ui/core";
+import {
+  AttachFile,
+  InsertEmoticon,
+  MoreVert,
+  SearchOutlined,
+} from "@material-ui/icons";
+import MicIcon from "@material-ui/icons/Mic";
+import React from "react";
+import "./Chat.css";
 
-function Chat() {
+function Chat({ messages }) {
   return (
-    <div className='chat'>
+    <div className="chat">
       <div className="chat__header">
         <Avatar />
 
@@ -29,48 +34,32 @@ function Chat() {
       </div>
 
       <div className="chat__body">
-        <p className='chat__message'>
+        {messages.map((message) => (
+          <p className={`chat__message ${message.received && "chat_receiver"}`}>
+          <span className="chat__name">{message.name}</span>
+          {message.message}
+          <span className="chat__timestamp">{message.timestamp}</span>
+        </p>          
+        ))}
+
+        <p className="chat__message chat__receiver">
           <span className="chat__name">Cameron</span>
-
           This is a message
-
-          <span className="chat__timestamp">
-            {new Date().toUTCString()}
-          </span>
+          <span className="chat__timestamp">{new Date().toUTCString()}</span>
         </p>
-
-        <p className='chat__message chat__receiver'>
-          <span className="chat__name">Cameron</span>
-
-          This is a message
-
-          <span className="chat__timestamp">
-            {new Date().toUTCString()}
-          </span>
-        </p>
-        <p className='chat__message'>
-          <span className="chat__name">Cameron</span>
-
-          This is a message
-
-          <span className="chat__timestamp">
-            {new Date().toUTCString()}
-          </span>
-        </p>
+  
       </div>
 
       <div className="chat__footer">
         <InsertEmoticon />
         <form>
-          <input type="text" placeholder='Type a message'/>
-          <button type='submit'>
-            Send a message  
-           </button>
+          <input type="text" placeholder="Type a message" />
+          <button type="submit">Send a message</button>
         </form>
         <MicIcon />
       </div>
     </div>
-  )
+  );
 }
 
-export default Chat
+export default Chat;
